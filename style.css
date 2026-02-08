@@ -1,0 +1,751 @@
+/* =========================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-color: #D4AF37; /* Gold Color */
+    --text-dark: #333333;
+    --text-light: #666666;
+    --bg-light: #f9f9f9;
+    --bg-white: #ffffff;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: var(--bg-white);
+    overflow-x: hidden; /* තිරයෙන් පිට පැනීම වැළැක්වීම */
+}
+
+/* =========================================
+   2. NAVIGATION BAR
+   ========================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: var(--bg-white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo h1 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: var(--text-dark);
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    margin-left: 30px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-dark);
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Currency Selector */
+#currencySelect {
+    padding: 5px 10px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--text-dark);
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 20px;
+    font-family: var(--font-body);
+}
+
+#currencySelect:focus {
+    outline: none;
+    background: #f9f9f9;
+}
+
+/* =========================================
+   3. HERO SECTION (SPLIT LAYOUT)
+   ========================================= */
+.hero-split {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 90vh;
+    padding: 0 5%;
+    background-color: #0b1c3c; /* තද නිල් */
+    flex-wrap: wrap;
+}
+
+.hero-text-box {
+    flex: 1;
+    color: white;
+    padding-right: 50px;
+    min-width: 300px;
+    animation: fadeIn 1s ease-in;
+}
+
+.hero-text-box h2 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--primary-color);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-text-box p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #e0e0e0;
+}
+
+.hero-image-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 300px;
+}
+
+.hero-image-box img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 2px solid var(--primary-color);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-primary {
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #b5922b;
+}
+
+/* =========================================
+   4. COMMON SECTION STYLES
+   ========================================= */
+.section-padding {
+    padding: 80px 5%;
+}
+
+.section-title {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--text-dark);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+/* =========================================
+   5. JOURNEY & FEATURES SECTION
+   ========================================= */
+.journey-section {
+    padding: 80px 0;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.journey-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    padding: 0 5%;
+    gap: 50px;
+}
+
+.journey-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.journey-img {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.journey-img img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.journey-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.step-number {
+    font-size: 4rem;
+    font-family: var(--font-heading);
+    color: rgba(212, 175, 55, 0.2);
+    font-weight: bold;
+    display: block;
+    line-height: 1;
+    margin-bottom: -20px;
+}
+
+.journey-text h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+/* Parallax Break */
+.parallax-break {
+    height: 300px;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px 0;
+    position: relative;
+}
+
+.parallax-break .break-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+}
+
+.parallax-break .break-content h3 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    border: 2px solid var(--primary-color);
+    padding: 20px 40px;
+    display: inline-block;
+    background: rgba(0,0,0,0.4);
+}
+
+/* Features Icons */
+.intro-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+
+.features-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.feature-box {
+    text-align: center;
+    flex: 1;
+    min-width: 250px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.feature-box i {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* =========================================
+   6. DESIGN BREAK (BESPOKE)
+   ========================================= */
+.design-break {
+    background-image: url('Photos/Gem11.jpg'); /* ෆොටෝ එකේ නම හරිද බලන්න */
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.overlay-dark {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(11, 28, 60, 0.7);
+}
+
+.creative-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+.creative-content h3 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.creative-content p {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.btn-outline-gold {
+    text-decoration: none;
+    padding: 12px 30px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-outline-gold:hover {
+    background: var(--primary-color);
+    color: #000;
+}
+
+/* =========================================
+   7. COLLECTION SLIDER
+   ========================================= */
+.slider-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 30px;
+    padding-bottom: 20px;
+    scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.product-card {
+    min-width: 300px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    flex: 0 0 auto;
+}
+
+.img-container {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.product-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.price {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.btn-secondary {
+    padding: 8px 20px;
+    border: 1px solid var(--text-dark);
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-secondary:hover {
+    background: var(--text-dark);
+    color: white;
+}
+
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.left-btn { left: 0; }
+.right-btn { right: 0; }
+
+/* =========================================
+   8. TESTIMONIALS (REVIEWS) - FIXED
+   ========================================= */
+.luxury-review-section {
+    position: relative;
+    padding: 80px 0;
+    /* තද නිල් Gradient පසුබිම */
+    background: linear-gradient(135deg, #050a14 0%, #0b1c3c 100%);
+    color: white;
+    overflow: hidden;
+}
+
+.testimonial-carousel {
+    max-width: 900px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden; /* කාඩ් පිට පැනීම වළක්වයි */
+}
+
+.testimonial-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.review-card {
+    min-width: 100%; /* කාඩ් එක සම්පූර්ණ පළල ගනී */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Glass Effect Box */
+.glass-card-inner {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.review-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #e0e0e0;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.stars {
+    color: #ffd700;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+}
+
+/* Review Image FIX (පින්තූර පොඩි කිරීම) */
+.reviewer-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.reviewer-img {
+    width: 80px !important;  /* අනිවාර්යයෙන්ම 80px */
+    height: 80px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffd700;
+    margin-right: 15px;
+}
+
+.reviewer-info h4 {
+    margin: 0;
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.reviewer-info span {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* Arrows for Review Slider */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #ffd700;
+    border: 1px solid #ffd700;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+}
+.slider-arrow:hover {
+    background: #ffd700;
+    color: #000;
+}
+.prev-arrow { left: 0; }
+.next-arrow { right: 0; }
+
+/* =========================================
+   9. CONTACT SECTION
+   ========================================= */
+.contact-wrapper {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contact-info-box {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-info-box h3 {
+    font-family: var(--font-heading);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.map-container iframe {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-form-box {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--primary-color);
+}
+
+.contact-form-box input, 
+.contact-form-box select, 
+.contact-form-box textarea {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.contact-form-box input:focus, 
+.contact-form-box select:focus, 
+.contact-form-box textarea:focus {
+    border-bottom-color: var(--primary-color);
+}
+
+.full-width {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* =========================================
+   10. FOOTER
+   ========================================= */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   11. MOBILE RESPONSIVE (MEDIA QUERIES)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* Mobile Navigation */
+    .nav-links {
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        height: 100vh;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 70%;
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        z-index: 998;
+    }
+    
+    .nav-active {
+        transform: translateX(0%);
+    }
+
+    .burger {
+        display: block;
+        z-index: 999;
+        position: relative;
+    }
+
+    /* Burger Animations */
+    .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+    .toggle .line2 { opacity: 0; }
+    .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+    /* Hero Mobile */
+    .hero-split {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 100px;
+    }
+    
+    .hero-text-box {
+        padding-right: 0;
+        margin-top: 30px;
+    }
+
+    .hero-text-box h2 {
+        font-size: 2.5rem;
+    }
+
+    /* General Mobile Fixes */
+    .journey-row, .journey-row.reverse {
+        flex-direction: column;
+    }
+    
+    .slider-wrapper {
+        padding: 0 10px;
+    }
+    
+    .slide-btn, .slider-arrow {
+        display: none; /* Hide arrows on mobile */
+    }
+
+    .glass-card-inner {
+        padding: 20px;
+    }
+}
